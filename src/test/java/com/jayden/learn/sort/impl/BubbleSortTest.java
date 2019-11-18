@@ -17,7 +17,7 @@ public class BubbleSortTest {
 
     static {
         Random random = new Random();
-        len = random.nextInt(5);
+        len = 5 + random.nextInt(5);
         numbers = new int[len];
         for (int i = 0; i < len; i++) {
             numbers[i] = random.nextInt(10);
@@ -34,7 +34,8 @@ public class BubbleSortTest {
     public void sort() throws Exception {
         Arrays.<Consumer<int[]>>asList(
                 BubbleSort::sort,
-                DirectInsertSort::sort
+                DirectInsertSort::sort,
+                QuickSort::sort
         ).forEach(consumer -> {
             int[] copyOf = Arrays.copyOf(numbers, len);
             consumer.accept(copyOf);
