@@ -10,23 +10,22 @@ public class QuickSort {
             return;
         }
         int base = numbers[low];
-        int lowCursor = low + 1;
+        int lowCursor = low;
         int highCursor = high;
         while (lowCursor < highCursor) {
-            while (numbers[lowCursor] < base && lowCursor < highCursor) {
-                lowCursor++;
-            }
             while (numbers[highCursor] >= base && lowCursor < highCursor) {
                 highCursor--;
+            }
+            while (numbers[lowCursor] <= base && lowCursor < highCursor) {
+                lowCursor++;
             }
             if (lowCursor < highCursor) {
                 swap(numbers, lowCursor, highCursor);
             }
         }
-        int confirmPos = numbers[lowCursor] < base ? lowCursor : lowCursor - 1;
-        swap(numbers, low, confirmPos);
-        quickSort(numbers, low, confirmPos - 1);
-        quickSort(numbers, confirmPos + 1, high);
+        swap(numbers, low, lowCursor);
+        quickSort(numbers, low, lowCursor - 1);
+        quickSort(numbers, lowCursor + 1, high);
 
     }
 

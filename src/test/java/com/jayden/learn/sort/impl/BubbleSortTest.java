@@ -4,45 +4,44 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
 import java.util.function.Consumer;
-import java.util.stream.Stream;
 
 public class BubbleSortTest {
-    private static int[] numbers;
-    private static int len;
-
-    private static int[] sortNumbers;
-
-    static {
-        Random random = new Random();
-        len = 5 + random.nextInt(5);
-        numbers = new int[len];
-        for (int i = 0; i < len; i++) {
-            numbers[i] = random.nextInt(10);
-        }
-        System.out.println("numbers = " + Arrays.toString(numbers));
-
-        sortNumbers = Arrays.copyOf(numbers, len);
-        Arrays.sort(sortNumbers);
-        System.out.println("sortNumbers = " + Arrays.toString(sortNumbers));
-    }
 
 
     @Test
     public void sort() throws Exception {
+        Random random = new Random();
+        final int[] numbers = new int[5 + random.nextInt(5)];
+        for (int i = 0; i < numbers.length; i++) {
+            numbers[i] = random.nextInt(10);
+        }
+//        int[] numbers = new int [] {7, 0, 5, 9, 1};
+        System.out.println("numbers = " + Arrays.toString(numbers));
+
+        int[] sortNumbers = Arrays.copyOf(numbers, numbers.length);
+        Arrays.sort(sortNumbers);
+        System.out.println("sortNumbers = " + Arrays.toString(sortNumbers));
+
         Arrays.<Consumer<int[]>>asList(
                 BubbleSort::sort,
                 DirectInsertSort::sort,
                 QuickSort::sort
         ).forEach(consumer -> {
-            int[] copyOf = Arrays.copyOf(numbers, len);
+            int[] copyOf = Arrays.copyOf(numbers, numbers.length);
             consumer.accept(copyOf);
             System.out.println("copyOf = " + Arrays.toString(copyOf));
             Assert.assertArrayEquals(sortNumbers, copyOf);
         });
 
+    }
+
+    @Test
+    public void multiSort() throws Exception {
+        for (int i = 0; i < 100; i++) {
+            sort();
+        }
     }
 
 }
