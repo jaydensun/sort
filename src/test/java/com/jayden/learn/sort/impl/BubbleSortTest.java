@@ -17,7 +17,7 @@ public class BubbleSortTest {
         for (int i = 0; i < numbers.length; i++) {
             numbers[i] = random.nextInt(10);
         }
-//        int[] numbers = new int [] {7, 0, 5, 9, 1};
+//        int[] numbers = new int [] {4, 0, 6, 9, 6};
         System.out.println("numbers = " + Arrays.toString(numbers));
 
         int[] sortNumbers = Arrays.copyOf(numbers, numbers.length);

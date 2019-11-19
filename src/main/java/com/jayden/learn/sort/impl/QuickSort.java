@@ -23,7 +23,9 @@ public class QuickSort {
                 swap(numbers, lowCursor, highCursor);
             }
         }
-        swap(numbers, low, lowCursor);
+        if (low < lowCursor) {
+            swap(numbers, low, lowCursor);
+        }
         quickSort(numbers, low, lowCursor - 1);
         quickSort(numbers, lowCursor + 1, high);
 
