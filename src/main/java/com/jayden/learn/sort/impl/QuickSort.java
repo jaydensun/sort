@@ -6,6 +6,7 @@ public class QuickSort {
     }
 
     private static void quickSort(int[] numbers, int low, int high) {
+        // 要排序的数字小于等于1个，直接返回
         if (low >= high) {
             return;
         }
@@ -16,24 +17,15 @@ public class QuickSort {
             while (numbers[highCursor] >= base && lowCursor < highCursor) {
                 highCursor--;
             }
+            numbers[lowCursor] = numbers[highCursor];
             while (numbers[lowCursor] <= base && lowCursor < highCursor) {
                 lowCursor++;
             }
-            if (lowCursor < highCursor) {
-                swap(numbers, lowCursor, highCursor);
-            }
+            numbers[highCursor] = numbers[lowCursor];
         }
-        if (low < lowCursor) {
-            swap(numbers, low, lowCursor);
-        }
+        numbers[lowCursor] = base;
         quickSort(numbers, low, lowCursor - 1);
         quickSort(numbers, lowCursor + 1, high);
-
     }
 
-    private static void swap(int[] numbers, int first, int second) {
-        int tmp = numbers[first];
-        numbers[first] = numbers[second];
-        numbers[second] = tmp;
-    }
 }
