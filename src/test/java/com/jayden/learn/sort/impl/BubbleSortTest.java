@@ -27,7 +27,8 @@ public class BubbleSortTest {
         Arrays.<Consumer<int[]>>asList(
                 BubbleSort::sort,
                 DirectInsertSort::sort,
-                QuickSort::sort
+                QuickSort::sort,
+                ShellSort::sort
         ).forEach(consumer -> {
             int[] copyOf = Arrays.copyOf(numbers, numbers.length);
             consumer.accept(copyOf);
