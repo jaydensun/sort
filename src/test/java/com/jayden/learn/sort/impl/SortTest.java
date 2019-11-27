@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.function.Consumer;
 
-public class BubbleSortTest {
+public class SortTest {
 
 
     @Test
@@ -27,6 +27,7 @@ public class BubbleSortTest {
         Arrays.<Consumer<int[]>>asList(
                 BubbleSort::sort,
                 DirectInsertSort::sort,
+                BinaryInsertSort::sort,
                 QuickSort::sort,
                 ShellSort::sort
         ).forEach(consumer -> {
@@ -40,7 +41,7 @@ public class BubbleSortTest {
 
     @Test
     public void multiSort() throws Exception {
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 1000; i++) {
             sort();
         }
     }
