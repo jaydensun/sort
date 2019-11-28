@@ -29,7 +29,8 @@ public class SortTest {
                 DirectInsertSort::sort,
                 BinaryInsertSort::sort,
                 QuickSort::sort,
-                ShellSort::sort
+                ShellSort::sort,
+                SelectSort::sort
         ).forEach(consumer -> {
             int[] copyOf = Arrays.copyOf(numbers, numbers.length);
             consumer.accept(copyOf);
