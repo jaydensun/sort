@@ -17,7 +17,7 @@ public class SortTest {
         for (int i = 0; i < numbers.length; i++) {
             numbers[i] = random.nextInt(10);
         }
-//        int[] numbers = new int [] {4, 0, 6, 9, 6};
+//        int[] numbers = new int [] {6, 1, 5, 7, 9, 0};
         System.out.println("numbers = " + Arrays.toString(numbers));
 
         int[] sortNumbers = Arrays.copyOf(numbers, numbers.length);
@@ -30,7 +30,8 @@ public class SortTest {
                 BinaryInsertSort::sort,
                 QuickSort::sort,
                 ShellSort::sort,
-                SelectSort::sort
+                SelectSort::sort,
+                HeapSort::sort
         ).forEach(consumer -> {
             int[] copyOf = Arrays.copyOf(numbers, numbers.length);
             consumer.accept(copyOf);
@@ -42,7 +43,7 @@ public class SortTest {
 
     @Test
     public void multiSort() throws Exception {
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 10000; i++) {
             sort();
         }
     }

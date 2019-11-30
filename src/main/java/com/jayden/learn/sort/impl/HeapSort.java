@@ -1,22 +1,41 @@
 package com.jayden.learn.sort.impl;
 
 public class HeapSort {
+
     public static void sort(int[] arrays) {
-        for (int step = arrays.length / 2; step > 0; step /= 2) {
-            //从增量那组开始进行插入排序，直至完毕
-            for (int i = step; i < arrays.length; i++) {
+        // 建立最大堆
+        for (int i = (arrays.length -2 ) / 2; i >=0; i--) {
+            maxCurNode(arrays, i, arrays.length - 1);
+        }
 
-                int j = i;
-                int temp = arrays[j];
+        for (int i = arrays.length - 1; i >= 0; i--) {
+            swap(arrays, i, 0);
+            maxCurNode(arrays, 0, i - 1);
+        }
+    }
 
-                // j - step 就是代表与它同组隔壁的元素
-                int last;
-                while ((last = j - step) >= 0 && arrays[last] > temp) {
-                    arrays[j] = arrays[last];
-                    j = last;
-                }
-                arrays[j] = temp;
+    private static void maxCurNode(int[] arrays, int curIndex, int maxIndex) {
+        while (curIndex < maxIndex) {
+            int leftIndex = curIndex * 2 + 1;
+            if (leftIndex > maxIndex)
+                break;
+            int rightIndex = leftIndex + 1;
+            int maxPos = leftIndex;
+            if (rightIndex <= maxIndex && arrays[rightIndex] > arrays[maxPos]) {
+                maxPos = rightIndex;
+            }
+            if (arrays[maxPos] > arrays[curIndex]) {
+                swap(arrays, curIndex, maxPos);
+                curIndex = maxPos;
+            } else {
+                break;
             }
         }
+    }
+
+    private static void swap(int[] arrays, int left, int right) {
+        int tmp = arrays[right];
+        arrays[right] = arrays[left];
+        arrays[left] = tmp;
     }
 }
