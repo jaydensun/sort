@@ -31,7 +31,8 @@ public class SortTest {
                 QuickSort::sort,
                 ShellSort::sort,
                 SelectSort::sort,
-                HeapSort::sort
+                HeapSort::sort,
+                MergeSort::sort
         ).forEach(consumer -> {
             int[] copyOf = Arrays.copyOf(numbers, numbers.length);
             consumer.accept(copyOf);
